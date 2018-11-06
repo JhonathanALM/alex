@@ -24,23 +24,24 @@ public class UsuarioFacade extends AbstractFacade<Usuario> {
     public UsuarioFacade() {
         super(Usuario.class);
     }
-         public Usuario iniciarSesion(Usuario us, String usu) {
+
+    public Usuario iniciarSesion(Usuario us, String usu) {
         Usuario usuario = null;
         String consulta;
-        try{
-             consulta= "FROM Usuario u WHERE u.id =?1";
+        try {
+            consulta = "FROM Usuario u WHERE u.nombre =?1";
             Query query = em.createQuery(consulta);
-            System.out.println(usu+" ---- ");
+            System.out.println(usu + " ---- ");
             query.setParameter(1, usu);
             List<Usuario> lista = query.getResultList();
-            
-            if(!lista.isEmpty()){
-                usuario=lista.get(0);
+
+            if (!lista.isEmpty()) {
+                usuario = lista.get(0);
             }
-            
-        }catch(Exception e){
-            System.out.println("ERROR!!!"+e);
-        }finally{
+
+        } catch (Exception e) {
+            System.out.println("ERROR!!!" + e);
+        } finally {
             //
         }
         return usuario;
